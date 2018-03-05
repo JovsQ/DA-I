@@ -41,7 +41,22 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PlaylistsCtrl', function($scope) {
+.controller('PlaylistsCtrl', function($http, $scope) {
+
+  $scope.init = function(){
+    var authdata = "YWRtaW5AYXZpbm5vdnouY29tOlBAc3N3MHJk";
+    $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata;
+    console.log('init', $http);
+    $http.get("http://54.255.149.40:9000/api/v1/readings")
+            .success(function(data) {
+              console.log('success');
+              console.log('data', data);
+            })
+            .error(function(data) {
+              console.log('error', data);
+            });
+  };
+
   $scope.playlists = [
     { title: 'Reggae', id: 1 },
     { title: 'Chill', id: 2 },
