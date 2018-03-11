@@ -41,4 +41,21 @@ app.controller('MainController', ['$http', '$scope', 'apiService', function($htt
             return 'lightgray';
         }
     };
+
+    $scope.getEmoji = function(station){
+        var value = station.highest_pollutant_value;
+        if (value <= 50) {
+            return '/img/image_good.png';
+        } else if (value > 50 && value <= 100) {
+            return '/img/image_fair.png';
+        } else if (value > 100 && value <= 150) {
+            return '/img/image_unhealthy.png';
+        } else if (value > 150 && value <= 200) {
+            return '/img/image_very_unhealthy.png';
+        } else if (value > 200 && value <= 300) {
+            return '/img/image_acutely.png';
+        } else{
+            return '/img/image_emergency.png';    
+        }  
+    };
 }]);
