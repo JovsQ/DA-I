@@ -19,4 +19,46 @@ app.service('apiService', ['$http', '$q', function($http, $q){
 
 		return deferred.promise;
 	};
+
+	this.getAllLatestReadings = function(){
+		var deferred = $q.defer();
+
+		$http.get(base_url + "/api/v1/readings/latest")
+		.success(function(data){
+			deferred.resolve(data);
+		})
+		.error(function(data){
+			deferred.reject(data);
+		});
+
+		return deferred.promise;
+	};
+
+	this.getAllLatestReadingsByStation = function(stationId){
+		var deferred = $q.defer();
+
+		$http.get(base_url + "/api/v1/readings/latest?station=" + stationId)
+		.success(function(data){
+			deferred.resolve(data);
+		})
+		.error(function(data){
+			deferred.reject(data);
+		});
+
+		return deferred.promise;
+	};
+
+	this.getAllStations = function(){
+		var deferred = $q.defer();
+
+		$http.get(base_url + "/api/v1/stations")
+		.success(function(data){
+			deferred.resolve(data);
+		})
+		.error(function(data){
+			deferred.reject(data);
+		})
+
+		return deferred.promise;
+	};
 }]);
