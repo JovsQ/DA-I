@@ -22,11 +22,23 @@ app.controller('MainController', ['$http', '$scope', 'apiService', function($htt
 
     $scope.getColor = function(station){
         console.log("get color", station);
+        var value = station.highest_pollutant_value;
         if (station.is_online) {
-            return 'yellow';
+            if (value <= 50) {
+                return '#2EB050';
+            } else if (value > 50 && value <= 100) {
+                return '#FFFF00';
+            } else if (value > 100 && value <= 150) {
+                return '#E46C0B';
+            } else if (value > 150 && value <= 200) {
+                return '#F90F01';
+            } else if (value > 200 && value <= 300) {
+                return '#7030a0';
+            } else{
+                return '#990500';    
+            }            
         } else {
             return 'lightgray';
         }
-
     };
 }]);
