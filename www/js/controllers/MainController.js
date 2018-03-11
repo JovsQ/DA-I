@@ -10,6 +10,7 @@ app.controller('MainController', ['$http', '$scope', 'apiService', function($htt
                 station.station.station_name != 'Pasay Station' &&
                 station.station.station_name != 'Navotas Station' &&
                 station.station.station_name != 'North Caloocan Station') {
+                    console.log('station', station);
                     $scope.stations.push(station);
                 }
             });

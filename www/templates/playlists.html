@@ -2,7 +2,25 @@
   	<ion-content ng-init="init()">
     	<ion-list>
       		<ion-item class="item-borderless" ng-repeat="station in stations">
-        	{{station.station.station_name}}
+        	
+        		<div class="card row" style="min-height: 100px;margin: -5px; padding: 0px">
+        			<div class="col col-10" style="background-color: yellow; margin: 0px;"">
+        				
+        			</div>
+        			<div class="col col-80" style="margin-left: -15px; background-color: white">
+        				<h2 class="row" style="font-size: 12px">{{station.station.station_name}}</h2>
+        				<span class="row" style="font-size: 10px">{{station.station.address}}</span>
+        				<span class="row" style="color: lightgray; font-size: 10px">Status</span>
+        				<span class="row" style="font-size: 10px">{{station.concern_level}}</span>
+        				<span class="row" style="color: lightgray; font-size: 10px">Cationary Statement</span>
+        				<span class="row" style="font-size: 10px">{{station.cautionary_statement}}</span>
+        				<span class="row" style="color: lightgray; font-size: 10px">Reading as of</span>
+        				<span class="row" style="font-size: 10px">{{station.reading_date}}</span>
+        			</div>
+        			<div class="col col-10" >
+        				<img ng-src="/img/image_good.png" style="width: 28px; height: 28px; margin-top: 20px">
+        			</div>
+        		</div>
       		</ion-item>
     	</ion-list>
   	</ion-content>
