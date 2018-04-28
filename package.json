@@ -9,6 +9,7 @@
         "gulp-sass": "^3.1.0"
     },
     "dependencies": {
+        "cordova-android": "^6.2.3",
         "cordova-plugin-device": "^2.0.1",
         "cordova-plugin-ionic-keyboard": "^2.0.5",
         "cordova-plugin-ionic-webview": "^1.1.16",
@@ -25,6 +26,7 @@
             "cordova-plugin-whitelist": {}
         },
         "platforms": [
+            "android",
             "windows"
         ]
     }
