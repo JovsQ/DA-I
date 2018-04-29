@@ -1,5 +1,22 @@
-app.controller('MapController', ['$scope', '$state', function($scope, $state){
-	console.log('MAP!!!');
+app.controller('MapController', ['$scope', '$state', 'NgMap', function($scope, $state, NgMap){
+
+	var infobox = {};
+
+	$scope.init = function() {
+		console.log('MAP');
+		NgMap.getMap().then(function(map) {
+		    console.log(map.getCenter());
+		    console.log('markers', map.markers);
+		    console.log('shapes', map.shapes);
+		});
+
+		// this.showInfobox = this.showInfobox.bind(this);
+	}
+
+	// showInfobox (event, index, station) {
+ //        this.infobox.station = station;
+ //        this.map.showInfoWindow('station-details', 'station-marker-' + index);
+ //    }
 
 	$scope.goToStations = function() {
 		$state.go('app.stations');
