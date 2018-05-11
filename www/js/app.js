@@ -50,6 +50,16 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'ngMap'])
       }
     })
 
+  .state('app.station', {
+    url: '/station/:station_id',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/station-details.html',
+        controller: 'StationController',
+      }
+    }
+  })
+
   .state('app.stations', {
     url: '/stations',
     views: {

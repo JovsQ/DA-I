@@ -1,4 +1,4 @@
-app.controller('MainController', ['$http', '$scope', 'apiService', function($http, $scope, apiService){
+app.controller('MainController', ['$http', '$scope', '$state', 'apiService', function($http, $scope, $state, apiService){
 
     $scope.stations = [];
 
@@ -22,6 +22,9 @@ app.controller('MainController', ['$http', '$scope', 'apiService', function($htt
 
     $scope.showDetails = function(station){
         console.log('station', station);
+        var stationId = station.station.id;
+        console.log('station id', stationId);
+        $state.go('app.station', {station_id: stationId});
     };
 
     $scope.getColor = function(station){

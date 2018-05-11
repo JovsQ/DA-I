@@ -4,7 +4,7 @@
 }
 
 #stations-map {
-  height: 300px;
+  height: 700px;
 }
 
 .custom-marker > .station-marker {
@@ -39,8 +39,6 @@
 .custom-marker > .station-marker .emergency {
   background-color: maroon;
 }
-
-
 
 #mini-cautionary-image {
   height: 50px;
