@@ -3,6 +3,17 @@ app.controller('MainController', ['$http', '$scope', '$state', 'apiService', fun
     $scope.stations = [];
 
 	$scope.init = function(){
+        // apiService.getStationsWithReadings()
+        // .then(function(latestReadings){
+        //     console.log('LATEST READINGS CONTROLLER', latestReadings);
+        //     $scope.stations = latestReadings;
+        // })
+        // .catch(function(error){
+        //     console.log('ERROR', error);
+        // });
+
+
+
         apiService.getAllLatestReadings()
         .then(function(stations){
             stations.forEach(function(station){
@@ -21,10 +32,15 @@ app.controller('MainController', ['$http', '$scope', '$state', 'apiService', fun
   	};
 
     $scope.showDetails = function(station){
+        // $scope.stations.forEach(function(station){
+        //     console.log('station', station.concern_level);
+        // })
+
         console.log('station', station);
         var stationId = station.station.id;
-        console.log('station id', stationId);
-        $state.go('app.station', {station_id: stationId});
+        if (station.is_online) {
+           $state.go('app.station', {station_id: stationId}); 
+       }
     };
 
     $scope.getColor = function(station){
