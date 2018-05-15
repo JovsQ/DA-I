@@ -1,41 +1,18 @@
-app.controller('StationController', ['$scope', '$stateParams', 'apiService', function($scope, $stateParams, apiService){
+app.controller('StationController', ['$localStorage', '$scope', '$stateParams', 'apiService', function($localStorage, $scope, $stateParams, apiService){
 	console.log('Station Controller');
 
 	$scope.reading = {};
 	$scope.bgColor = 'lightgray';
+	$scope.$storage = $localStorage;
 
 	$scope.init = function() {
 		console.log($stateParams.station_id);
-		// apiService.getAllLatestReadingsByStation($stateParams.station_id) 
-		// .then(function(reading){
-		// 	console.log('reading', reading);
-		// 	$scope.readings = reading[0];
-
-		// 	apiService.getStationDetails($stateParams.station_id)
-		// 	.then(function(station){
-		// 		console.log('station', station);
-		// 		$scope.readings.station = station;
-		// 		initDisplay();
-		// 		console.log('readings', $scope.readings);
-		// 	})
-		// 	.catch(function(error){
-		// 		console.log('error', error);
-		// 	})
-		// })
-		// .catch(function(error){
-		// 	console.log('error', error);
-		// });
-
-		apiService.getAllLatestReadings()
-		.then(function(readings){
-			readings.forEach(function(reading){
-				if (reading.station.id == $stateParams.station_id) {
-					console.log('READINGS', reading);
-					$scope.reading = reading;
-					setupColor();
-				}
-			})
-		})
+		$scope.$storage.latestReadings.forEach(function(reading){
+			if (reading.station.id == $stateParams.station_id) {
+				$scope.reading = reading;
+				setupColor();
+			}
+		});
 	};
 
 	function initDisplay() {
