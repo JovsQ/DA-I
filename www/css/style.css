@@ -16,27 +16,27 @@
   text-align: center;
 }
 
-.custom-marker > .station-marker .good {
+.custom-marker > .good {
   background-color: green;
 }
 
-.custom-marker > .station-marker .fair {
+.custom-marker > .fair {
   background-color: #e2cd14;
 }
 
-.custom-marker > .station-marker .unhealthy {
+.custom-marker > .unhealthy {
   background-color: orange;
 }
 
-.custom-marker > .station-marker .red {
+.custom-marker > .very-unhealthy {
   background-color: red;
 }
 
-.custom-marker > .station-marker .acutely-unhealthy {
+.custom-marker > .acutely-unhealthy {
   background-color: purple;
 }
 
-.custom-marker > .station-marker .emergency {
+.custom-marker > .emergency {
   background-color: maroon;
 }
 

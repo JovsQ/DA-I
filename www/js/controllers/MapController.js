@@ -57,8 +57,41 @@ app.controller('MapController', ['$q', '$scope', '$state', 'apiService', 'NgMap'
 		return deferred.promise;
 	};
 
+	$scope.logMarkers = function(station) {
+		console.log('station', station);
+	};
+
 	$scope.clickLegend = function() {
 		console.log('click legend');
+	};
+
+	$scope.getStatus = function(station) {
+		var status = '';
+		if (station.station.is_online) {
+			switch (station.concern_level) {
+				case 'Good':
+					status = 'good';
+				break;
+				case 'Fair':
+					status = 'fair';
+				break;
+				case 'Unhealthy for Sensitive Groups.':
+					status = 'unhealthy';
+				break;
+				case 'Very Unhealthy':
+					status = 'very-unhealthy';
+				break;
+				case 'Acutely Unhealthy':
+					status = 'acutely-unhealthy';
+				break;
+				case 'Emergency':
+					status = 'emergency';
+				break;
+			}
+		}
+
+		return status;
+		console.log('concern level', concern_level);
 	};
 
 

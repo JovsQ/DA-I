@@ -24,13 +24,13 @@
 
           <custom-marker ng-repeat="station in stations track by $index"
             id="station-marker-{{$index}}"
-            ng-if="station.latitude && station.longitude"
-            position="{{[station.latitude, station.longitude]}}">
-            <div class="station-marker {{ station.is_online ? vm.getReadingEquivalent(vm.readings[station.id].highest_pollutant_value) : ''}}">
+            ng-if="station.station.latitude && station.station.longitude"
+            position="{{[station.station.latitude, station.station.longitude]}}">
+            <div class="station-marker {{getStatus(station)}} ">
               <span ng-if="!station.is_online"> Offline </span>
-              <span class="no-wrap" ng-if="station.is_online && vm.readings[station.id].highest_pollutant">
-                <span ng-bind="vm.readings[station.id].highest_pollutant"></span>
-                (<span ng-bind="vm.readings[station.id].highest_pollutant_value | number : 0"> </span>)
+              <span class="no-wrap" ng-if="station.is_online">
+                <span ng-bind="station.highest_pollutant"></span>
+                (<span ng-bind="station.highest_pollutant_value | number : 0"> </span>)
               </span>
             </div>
           </custom-marker>
