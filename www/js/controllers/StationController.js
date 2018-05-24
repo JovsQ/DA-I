@@ -11,6 +11,7 @@ app.controller('StationController', ['$localStorage', '$scope', '$stateParams', 
 			if (reading.station.id == $stateParams.station_id) {
 				$scope.reading = reading;
 				setupColor();
+				console.log('READING', $scope.reading);
 			}
 		});
 	};

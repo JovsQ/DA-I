@@ -110,3 +110,9 @@
     padding: 5px;
     background-color: maroon;
 }
+
+.aqi-footer {
+  height: 90px !important;
+}
+
+.bar { background-image: none !important; }
