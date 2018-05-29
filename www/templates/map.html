@@ -62,7 +62,40 @@
 
           <info-window id="station-details">
             <div class="text-center station-details-box">
-              <h4>{{station.station.station_name}}</h4>
+              <div ng-show="station.station.is_online">
+                <!-- <div id="mini-cautionary-image" class="padding-20"
+                  style="background-image: url('/assets/images/{{vm.getReadingEquivalent(vm.readings[vm.infobox.station.id].highest_pollutant_value)}}.png')"
+                  ng-show="vm.readings[vm.infobox.station.id].highest_pollutant_value !== undefined"></div> -->
+                <img ng-show="station.station.is_online" ng-src="{{getEmoji(station)}}" style="width: 28px; height: 28px; margin-top: 20px">
+              </div>
+
+
+
+              <strong ng-bind-html="station.station.station_name ? station.station.station_name : '-'"></strong>
+              <p class="text-muted" ng-bind-html="station.station.address ? station.station.address : '-'"></p>
+
+              <div ng-hide="station.station.is_online" class="maintenance">
+                <strong> NO AQI DATA AVAILABLE AT THE MOMENT </strong>
+              </div>
+
+              <div ng-show="station.station.is_online">
+                <h5 id="basis">
+                  Calculated AQI
+                  (<span ng-bind="station.highest_pollutant"></span> -
+                  <span ng-bind="station.highest_pollutant_value | number : 0"></span>)
+                </h5>
+
+                <div ng-show="station.highest_pollutant_value !== undefined">
+                  Status <br />
+                  <span ng-bind="station.concern_level"></span>
+                </div>
+
+                <br />
+                <div ng-show="station.highest_pollutant_value !== undefined">
+                  Cautionary Statement <br />
+                  <span ng-bind-html="station.cautionary_statement"></span>
+                </div>
+              </div>
             </div>
           </info-window>
 
