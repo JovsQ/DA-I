@@ -1,4 +1,4 @@
-sapp.controller('StationController', ['$localStorage', '$scope', '$stateParams', 'apiService', function($localStorage, $scope, $stateParams, apiService){
+app.controller('StationController', ['$localStorage', '$scope', '$stateParams', 'apiService', function($localStorage, $scope, $stateParams, apiService){
 	console.log('Station Controller');
 
 	$scope.reading = {};

@@ -1,38 +1,16 @@
-app.controller('MainController', ['$http', '$localStorage', '$scope', '$state', 'apiService', function($http, $localStorage, $scope, $state, apiService){
+app.controller('MainController', ['$http', '$ionicSideMenuDelegate', '$localStorage', '$scope', '$state', 'apiService', function($http, $ionicSideMenuDelegate, $localStorage, $scope, $state, apiService){
 
     $scope.stations = [];
     $scope.$storage = $localStorage;
 
-	$scope.init = function(){
-        // apiService.getStationsWithReadings()
-        // .then(function(latestReadings){
-        //     console.log('LATEST READINGS CONTROLLER', latestReadings);
-        //     $scope.stations = latestReadings;
-        // })
-        // .catch(function(error){
-        //     console.log('ERROR', error);
-        // });
+    $scope.$on('$ionicView.enter', function() {
+        $ionicSideMenuDelegate.canDragContent(false);
+        $ionicSideMenuDelegate.edgeDragThreshold(false);    
+    });
+
+	$scope.init = function(){ 
 
         $scope.stations = $scope.$storage.latestReadings;
-
-
-
-        // apiService.getAllLatestReadings()
-        // .then(function(stations){
-        //     stations.forEach(function(station){
-        //         if (station.station.station_name != 'Naga City, Camarines Sur' &&
-        //         station.station.station_name != 'Pasay Station' &&
-        //         station.station.station_name != 'Navotas Station' &&
-        //         station.station.station_name != 'North Caloocan Station') {
-        //             // console.log('station', station);
-        //             $scope.stations.push(station);
-        //         }
-        //     });
-        //     $scope.$storage.latestReadings = $scope.stations;
-        // })
-        // .catch(function(error){
-        //     console.log('error', error);
-        // });
   	};
 
     $scope.showDetails = function(station){
