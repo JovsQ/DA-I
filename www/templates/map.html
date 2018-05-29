@@ -8,19 +8,6 @@
         <div map-lazy-load="https://maps.google.com/maps/api/js?key=AIzaSyBB13AC26RukVzqRxBJ9yddBkhQoZh_WPQ">
         <ng-map id="stations-map" center="12.8797, 121.7740" zoom="6"
           map-type-control-options="{ position: 'TOP_RIGHT' }" disable-default-u-i="true">
-          <!-- <custom-marker ng-repeat="station in stations track by $index"
-            id="station-marker-{{$index}}"
-            ng-if="station.latitude && station.longitude"
-            on-click="showInfobox($index, station)"
-            position="{{[station.latitude, station.longitude]}}">
-            <div class="station-marker {{ station.is_online ? vm.getReadingEquivalent(vm.readings[station.id].highest_pollutant_value) : ''}}">
-              <span ng-if="!station.is_online"> Offline </span>
-              <span class="no-wrap" ng-if="station.is_online && vm.readings[station.id].highest_pollutant">
-                <span ng-bind="vm.readings[station.id].highest_pollutant"></span>
-                (<span ng-bind="vm.readings[station.id].highest_pollutant_value | number : 0"> </span>)
-              </span>
-            </div>
-          </custom-marker> -->
 
           <custom-marker ng-repeat="station in stations track by $index"
             id="station-marker-{{$index}}"
@@ -36,7 +23,7 @@
             </div>
           </custom-marker>
 
-          <info-window id="station-details">
+          <!-- <info-window id="station-details">
             <div class="text-center station-details-box">
               <div ng-show="vm.readings[vm.infobox.station.id].is_online">
                 <div id="mini-cautionary-image" class="padding-20"
@@ -69,6 +56,13 @@
                   <span ng-bind-html="vm.readings[vm.infobox.station.id].cautionary_statement"></span>
                 </div>
               </div>
+            </div>
+          </info-window> -->
+
+
+          <info-window id="station-details">
+            <div class="text-center station-details-box">
+              <h4>{{station.station.station_name}}</h4>
             </div>
           </info-window>
 

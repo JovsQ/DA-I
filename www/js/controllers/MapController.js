@@ -1,28 +1,20 @@
 app.controller('MapController', ['$q', '$scope', '$state', 'apiService', 'NgMap', function($q, $scope, $state, apiService, NgMap){
 
 	var infobox = {};
-	var map;
+	$scope.map;
+	$scope.station;
 	var infobox;
 
 	$scope.init = function() {
 		fetchStations().then(function(){
 
 			NgMap.getMap().then(function(map) {
-				this.map = map;
-			    console.log('center', map.getCenter());
-			    console.log('markers', map.markers);
-			    console.log('shapes', map.shapes);
+				$scope.map = map;
 			});
 		});
 
 		// this.showInfobox = this.showInfobox.bind(this);
 	}
-
-	$scope.showInfobox = function(event, index, station) {
-		console.log('show infobox');
-        this.infobox.station = station;
-        this.map.showInfoWindow('station-details', 'station-marker-' + index);
-    }
 
 	$scope.goToStations = function() {
 		$state.go('app.stations');
@@ -95,9 +87,9 @@ app.controller('MapController', ['$q', '$scope', '$state', 'apiService', 'NgMap'
 	};
 
 	$scope.showInfobox = function(event, index, station) {
-		console.log('event', event);
-		console.log('index', index);
-		console.log('station', station);
+		console.log('station', station.station.station_name);
+		$scope.station = station;
+		$scope.map.showInfoWindow('station-details', 'station-marker-' + index);
 	}
 
 
