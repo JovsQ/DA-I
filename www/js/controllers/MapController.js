@@ -94,6 +94,12 @@ app.controller('MapController', ['$q', '$scope', '$state', 'apiService', 'NgMap'
 		console.log('concern level', concern_level);
 	};
 
+	$scope.showInfobox = function(event, index, station) {
+		console.log('event', event);
+		console.log('index', index);
+		console.log('station', station);
+	}
+
 
 }])
 
