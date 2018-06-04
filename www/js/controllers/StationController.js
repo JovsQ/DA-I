@@ -1,4 +1,4 @@
-app.controller('StationController', ['$localStorage', '$scope', '$stateParams', 'apiService', function($localStorage, $scope, $stateParams, apiService){
+app.controller('StationController', ['$ionicModal', '$localStorage', '$scope', '$stateParams', 'apiService', function($ionicModal, $localStorage, $scope, $stateParams, apiService){
 	console.log('Station Controller');
 
 	$scope.reading = {};
@@ -17,6 +17,12 @@ app.controller('StationController', ['$localStorage', '$scope', '$stateParams', 
 			}
 		});
 	};
+
+	$ionicModal.fromTemplateUrl('templates/modal-other-pollutants.html', {
+        scope: $scope
+    }).then(function(modal) {
+        $scope.modal = modal;
+    });
 
 	function initDisplay() {
 		// setupColor();

@@ -7,7 +7,7 @@
 			<div>{{reading.station.address}}</div>
 
 			<div style="margin-top: 20px;">Calculated AQI ({{reading.highest_pollutant}})</div>
-			<div>for {{reading.created_at | date:'MMM dd, yyyy hh:00a'}}</div>
+			<div>for {{reading.created_at | date:'MMM dd, yyyy h:00a'}}</div>
 			<div style="font-size: 48px; font-weight: 500; margin-top: 15px;">{{reading.highest_pollutant_value | number: 0}}</div>
 			
 			<div style="margin-top: 30px">Status</div>
@@ -23,7 +23,7 @@
   
 	<ion-footer-bar style="height:45px !important">
 	    <div class="bar" style="position:absolute; bottom:0;text-align:center;padding:4px;" >
-	       	<button style="min-width:100%; border-radius:5px; background-color: {{bgColor}}; color: black;" class="button" ng-click="changePollutant()">Other Parameters</button>       
+	       	<button style="min-width:100%; border-radius:5px; background-color: {{bgColor}}; color: black;" class="button" ng-click="modal.show()">Other Parameters</button>       
 	    </div>
   	</ion-footer-bar>
 

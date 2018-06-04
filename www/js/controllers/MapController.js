@@ -109,7 +109,6 @@ app.controller('MapController', ['$q', '$scope', '$state', 'apiService', 'NgMap'
 	            return 'img/image_emergency.png';    
 	        }	
 		}
-          
     };
 
 }])

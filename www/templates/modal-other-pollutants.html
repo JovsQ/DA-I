@@ -1,0 +1,28 @@
+<ion-modal-view style="background-color: transparent;">
+  <ion-content style="padding-top: 200px">
+    <div style="background-color: white; padding: 20px;">
+      
+        <div class="modal-title">
+          <p>Reminder</p>
+        </div>
+
+        <div class="modal-content">
+          <p>Please make sure that you have a stable internet connection.</p>
+          <p>Take the exam when you are free and when no one will disturb you.</p>
+          <p>You may tap the Start examination button once the questions have been downloaded.</p>
+        </div>
+
+        <div class="mobex-darker-color">
+          <div class="modal-progressbar">
+            <div class="modal-progressbar-color" style="width: {{percentage}}"></div>
+          </div>
+          <p class="modal-progress">{{question}} out of 40 questions downloaded</p>
+        </div>
+    </div>
+
+    <div class="bar" >
+      <button style="min-width:100%; border-radius:5px; background-color: {{bgColor}}; color: black;" class="button" ng-click="modal.hide()">Ok</button>       
+    </div>
+
+  </ion-content>
+</ion-modal-view>
