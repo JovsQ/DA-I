@@ -32,7 +32,7 @@ app.controller('StationController', ['$localStorage', '$scope', '$stateParams', 
 			case 'Fair':
 				$scope.bgColor = '#FFFF00';
 			break;
-			case 'Unhealthy for sensitive group':
+			case 'Unhealthy for Sensitive Groups.':
 				$scope.bgColor = '#E46C0B';
 			break;
 			case 'Very Unhealthy':
@@ -87,5 +87,13 @@ app.controller('StationController', ['$localStorage', '$scope', '$stateParams', 
         } else{
             return 'img/image_emergency.png';    
         }  
+    };
+
+    $scope.changePollutant = function(){
+    	console.log('change pollutant');
+    };
+
+    $scope.showGraph = function(){
+    	console.log('show graph');
     };
 }]);

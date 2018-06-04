@@ -1,8 +1,20 @@
 <ion-view style="background-color: white">
   	<ion-content ng-init="init()" style="background: linear-gradient(to top, {{bgColor}}, white)">
 
-  		<div style="width: 100%; text-align: center; margin-top: 20px">
+  		<div style="width: 100%; text-align: center; margin-top: 20px;padding: 20px; font-size: 12px;">
 			<img ng-hide="!reading.is_online" ng-src="{{getEmoji()}}" style="width: 56px; height: 56px;">
+			<div style="font-size: 16px; font-weight: 500;">{{reading.station.station_name}}</div>
+			<div>{{reading.station.address}}</div>
+
+			<div style="margin-top: 20px;">Calculated AQI ({{reading.highest_pollutant}})</div>
+			<div>for {{reading.created_at | date:'MMM dd, yyyy hh:00a'}}</div>
+			<div style="font-size: 48px; font-weight: 500; margin-top: 15px;">{{reading.highest_pollutant_value | number: 0}}</div>
+			
+			<div style="margin-top: 30px">Status</div>
+			<div>{{reading.concern_level}}</div>
+
+			<div style="margin-top: 10px">Cautionary Statement</div>
+			<div>{{reading.cautionary_statement}}</div>
 		</div>
 
   		<div style="height: 90px;"></div>
