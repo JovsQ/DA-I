@@ -1,6 +1,10 @@
 <ion-view style="background-color: white">
   	<ion-content ng-init="init()" style="background: linear-gradient(to top, {{bgColor}}, white)">
 
+  		<div style="width: 100%; text-align: center; margin-top: 20px">
+			<img ng-hide="!reading.is_online" ng-src="{{getEmoji()}}" style="width: 56px; height: 56px;">
+		</div>
+
   		<div style="height: 90px;"></div>
     	
   	</ion-content>
