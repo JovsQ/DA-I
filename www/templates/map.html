@@ -17,7 +17,7 @@
             <div class="station-marker {{getStatus(station)}} ">
               <span ng-if="!station.is_online"> Offline </span>
               <span class="no-wrap" ng-if="station.is_online">
-                <span ng-bind="station.highest_pollutant" style="white-space: nowrap;"></span>
+                <span ng-bind="capsFirstLetter(station.highest_pollutant)" style="white-space: nowrap;"></span>
                 (<span ng-bind="station.highest_pollutant_value | number : 0"> </span>)
               </span>
             </div>

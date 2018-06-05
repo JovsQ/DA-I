@@ -111,6 +111,17 @@ app.controller('MapController', ['$q', '$scope', '$state', 'apiService', 'NgMap'
 		}
     };
 
+    $scope.capsFirstLetter = function(pollutant){
+    	console.log('pollutant', pollutant);
+    	if (pollutant == 'pm 10') {
+    		pollutant = 'PM 10';	
+    	} else if (pollutant == 'pm 2.5') {
+    		pollutant = 'PM 2.5';
+    	}
+
+    	return pollutant;
+    };
+
 }])
 
 // 'use strict';
