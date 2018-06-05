@@ -1,22 +1,17 @@
 <ion-modal-view style="background-color: transparent;">
-  <ion-content style="padding-top: 200px;margin: 20px;">
+  <ion-content style="padding-top: 150px;margin: 20px;">
     <div style="background-color: white;">
       
         <div class="modal-title" style="padding: 20px; text-align: center;">
           <p>Other Pollutants</p>
         </div>
 
-        <div style="height: 44px; text-align: center;">
-          <button style="min-width: 97%; border-radius: 5px; border: 0; height: 36px; margin: 4px;">Others</button>
+        <div ng-repeat="pollutant in otherPollutants"> 
+          <div style="height: 44px; text-align: center;">
+            <button style="min-width: 97%; border-radius: 5px; border: 0; height: 36px; margin: 4px; background-color: {{fetchColor(pollutant)}}" ng-click="modal.hide(); buildReadings(pollutant.pollutant_name, pollutant.pollutant_value)">{{pollutant.pollutant_name}}</button>
+          </div>
         </div>
-
-        <div style="height: 44px; text-align: center;">
-          <button style="min-width: 97%; border-radius: 5px; border: 0; height: 36px; margin: 4px;">Others</button>
-        </div>
-
-        <div style="height: 44px; text-align: center;">
-          <button style="min-width: 97%; border-radius: 5px; border: 0; height: 36px; margin: 4px;">Others</button>
-        </div>
+        
 
         <div style="height: 44px; text-align: center; margin-top: 20px">
           <button style="min-width: 97%; border-radius: 5px; border: 0; height: 36px; margin: 4px; background-color: #ADD8E6;" ng-click="modal.hide()">Cancel</button>
