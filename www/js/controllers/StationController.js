@@ -7,8 +7,8 @@ app.controller('StationController', ['$ionicModal', '$localStorage', '$scope', '
 	$scope.selectedPollutant = {};
 	$scope.otherPollutants = [];
 
-	var PMS_POLLUTANTS = ['pm 10', 'pm 2.5', 'Humidity', 'Temperature'];
-	var DOAS_POLLUTANTS = ['Carbon Monoxide', 'Sulphur Dioxide', 'Nitrogen Dioxide', 'Ozone', 'pm 10', 'pm 2.5', 'Humidity', 'Temperature'];
+	var PMS_POLLUTANTS = ['pm 10', 'pm 2.5', 'Temperature', 'Humidity'];
+	var DOAS_POLLUTANTS = ['pm 10', 'pm 2.5','Sulphur Dioxide', 'Carbon Monoxide', 'Ozone', 'Nitrogen Dioxide', 'Temperature', 'Humidity'];
 
 	$scope.init = function() {
 		console.log($stateParams.station_id);
@@ -103,6 +103,7 @@ app.controller('StationController', ['$ionicModal', '$localStorage', '$scope', '
 
 				if (pollutantSnapshot == DOAS_POLLUTANTS[i]) {
 					$scope.selectedPollutant = pollutant;
+					setupColor(pollutant);
 				} else {
 					$scope.otherPollutants.push(pollutant);	
 				}
@@ -153,7 +154,9 @@ app.controller('StationController', ['$ionicModal', '$localStorage', '$scope', '
 	};
 
 	function getHumidity(value) {
-		if (value <= 20) {
+		if (value == 0) {
+			return 'lightgray'
+		} else if (value <= 20) {
 			return '#e5f6fb';
 		} else if (value > 20 && value <= 40) {
 			return '#b2e6f4';
@@ -168,7 +171,9 @@ app.controller('StationController', ['$ionicModal', '$localStorage', '$scope', '
 	};
 
 	function getTemp(value) {
-		if (value <= 5) {
+		if (value == 0) {
+			return 'lightgray'
+		} else if (value <= 5) {
 			return '#fee4d1';
 		} else if (value > 5 && value <= 10) {
 			return '#ecb48d';
@@ -183,12 +188,16 @@ app.controller('StationController', ['$ionicModal', '$localStorage', '$scope', '
 		}
 
 	};
-	
+
+	$scope.checkCurrentPollutant = function(){
+		return $scope.selectedPollutant.pollutant_name == "Humidity" || $scope.selectedPollutant.pollutant_name == "Temperature";
+	}
+
 	function setupColor(pollutant) {
 		if (pollutant.pollutant_name == 'Humidity') {
-			$scope.bgColor = "#00c7ff";
+			$scope.bgColor = getHumidity(pollutant.pollutant_value);
 		} else if (pollutant.pollutant_name == 'Temperature') {
-			$scope.bgColor = "#8B4513";
+			$scope.bgColor = getTemp(pollutant.pollutant_value);
 		} else {
 			var value = pollutant.pollutant_value;
 			if (value == 0) {
