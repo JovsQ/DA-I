@@ -100,12 +100,30 @@
           </info-window>
 
           <custom-control id="legend" position="TOP_LEFT" index="1" ng-click="clickLegend()">
-            <div class="legend-item good"> Good </div>
-            <div class="legend-item fair"> Fair </div>
+            <div class="row">
+              <div id="square" style="background-color: #2EB050"></div> Good 
+            </div>
+            <div class="row">
+              <div id="square" style="background-color: #FFFF00"></div> Fair 
+            </div>
+            <div class="row">
+              <div id="square" style="background-color: #E46C0B"></div> Unhealthy for sensitive group 
+            </div>
+            <div class="row">
+              <div id="square" style="background-color: #F90F01"></div> Very Unhealthy 
+            </div>
+            <div class="row">
+              <div id="square" style="background-color: #7030A0"></div> Acutely Unhealthy 
+            </div>
+            <div class="row">
+              <div id="square" style="background-color: #990500"></div> Emergency 
+            </div>
+
+            <!-- <div class="legend-item fair"> Fair </div>
             <div class="legend-item unhealthy"> Unhealthy for sensitive group </div>
             <div class="legend-item very-unhealthy"> Very Unhealthy </div>
             <div class="legend-item acutely-unhealthy"> Acutely Unhealthy </div>
-            <div class="legend-item emergency"> Emergency </div>
+            <div class="legend-item emergency"> Emergency </div> -->
           </custom-control>
         </ng-map>
       </div>
