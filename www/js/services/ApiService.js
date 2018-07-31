@@ -4,6 +4,9 @@ app.service('apiService', ['$http', '$q', function($http, $q){
 	var authdata = "YWRtaW5AYXZpbm5vdnouY29tOlBAc3N3MHJk";
 	var base_url = "http://54.255.149.40:9000";
 
+	var reading_request_limit = 24;
+	var reading_request_start = 0;
+
 	$http.defaults.headers.common['Authorization'] = 'Basic ' + authdata;
 
 	this.getAllReadings = function(){
@@ -28,6 +31,20 @@ app.service('apiService', ['$http', '$q', function($http, $q){
 			deferred.resolve(data);
 		})
 		.error(function(data){
+			deferred.reject(data);
+		});
+
+		return deferred.promise;
+	};
+
+	this.getNewReadings = function(stationId) {
+		var deferred = $q.defer();
+
+		$http.get(base_url + "/api/v1/readings?station=" + stationId + "&start=" + reading_request_start + "&limit=" + reading_request_limit)
+		.success(function(data) {
+			deferred.resolve(data);
+		})
+		.error(function(data) {
 			deferred.reject(data);
 		});
 
@@ -130,5 +147,7 @@ app.service('apiService', ['$http', '$q', function($http, $q){
 
 		return deferred.promise;
 	};
+
+
 
 }]);

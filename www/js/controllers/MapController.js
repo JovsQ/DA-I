@@ -1,17 +1,27 @@
-app.controller('MapController', ['$q', '$scope', '$state', 'apiService', 'NgMap', function($q, $scope, $state, apiService, NgMap){
+app.controller('MapController', ['$q', '$scope', '$localStorage', '$state', 'apiService', 'NgMap', function($q, $scope, $localStorage, $state, apiService, NgMap){
 
 	var infobox = {};
 	$scope.map;
 	$scope.station;
+	$scope.$storage = $localStorage;
 	var infobox;
 
-	$scope.init = function() {
-		fetchStations().then(function(){
+	$scope.googleMapsURL = 'AIzaSyBB13AC26RukVzqRxBJ9yddBkhQoZh_WPQ';
 
-			NgMap.getMap().then(function(map) {
-				$scope.map = map;
-			});
-		});
+	$scope.init = function() {
+
+		$scope.stations = $scope.$storage.latestReadings;
+		console.log('stations', $scope.stations);
+		NgMap.getMap().then(function(map) {
+			$scope.map = map;
+		})
+
+		// fetchStations().then(function(){
+
+		// 	NgMap.getMap().then(function(map) {
+		// 		$scope.map = map;
+		// 	});
+		// });
 
 		// this.showInfobox = this.showInfobox.bind(this);
 	}
@@ -112,7 +122,7 @@ app.controller('MapController', ['$q', '$scope', '$state', 'apiService', 'NgMap'
     };
 
     $scope.capsFirstLetter = function(pollutant){
-    	console.log('pollutant', pollutant);
+
     	if (pollutant == 'pm 10') {
     		pollutant = 'PM 10';	
     	} else if (pollutant == 'pm 2.5') {

@@ -121,6 +121,12 @@ app.controller('StationController', ['$ionicModal', '$localStorage', '$scope', '
         $scope.modal = modal;
     });
 
+    $ionicModal.fromTemplateUrl('templates/modal-graph.html', {
+    	scope: $scope
+    }).then(function(modal) {
+    	$scope.graphModal = modal;
+    });
+
 	function initDisplay() {
 		// setupColor();
 		$scope.bgColor = $scope.getColor();
