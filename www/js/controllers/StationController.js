@@ -11,7 +11,6 @@ app.controller('StationController', ['$ionicModal', '$localStorage', '$scope', '
 	var DOAS_POLLUTANTS = ['pm 10', 'pm 2.5','Sulphur Dioxide', 'Carbon Monoxide', 'Ozone', 'Nitrogen Dioxide', 'Temperature', 'Humidity'];
 
 	$scope.init = function() {
-		console.log($stateParams.station_id);
 		$scope.$storage.latestReadings.forEach(function(reading){
 			if (reading.station.id == $stateParams.station_id) {
 				$scope.reading = reading;
@@ -19,9 +18,151 @@ app.controller('StationController', ['$ionicModal', '$localStorage', '$scope', '
 				$scope.buildReadings(reading.highest_pollutant, reading.highest_pollutant_value);
 				console.log('READING', $scope.reading);
 				
+				buildGraph($stateParams.station_id, reading.highest_pollutant);
 			}
 		});
 	};
+
+	$scope.filteredReadings = [];
+
+	var buildGraph = function(stationId, pollutant) {
+		console.log('build graph');
+		console.log('pollutant', pollutant);
+		$scope.filteredReadings = [];
+		var inititialFormat = [];
+    	$scope.$storage.newReadings.forEach(function(newReading) {
+    		if (newReading.station.id == $stateParams.station_id) {
+    			inititialFormat.push(newReading);
+    		}
+    	});
+
+    	$scope.filteredReadings = inititialFormat.reverse();
+	};
+
+	$scope.getPercentage = function(reading, pollutant) {
+		console.log('getting percentage', pollutant);
+		var pollutants = [];
+		var highest = 0;
+		var lowest = 0;
+		var value = 0;
+
+		switch(pollutant) {
+			case 'pm 2.5':
+				value = reading.aqi_pm25;
+			break;
+			case 'pm 10':
+				value = reading.aqi_pm10;
+			break;
+			case 'Humidity':
+				value = reading.humidity;
+			break;
+			case 'Temperature':
+				value = reading.temperature;
+			break;
+			case 'Ozone':
+				value = reading.aqi_ozone;
+			break;
+			case 'Sulphur Dioxide':
+				value = reading.aqi_sulphur_dioxide;
+			break;
+			case 'Carbon Monoxide':
+				value = reading.aqi_carbon_monoxide;
+			break;
+			case 'Nitrogen Dioxide':
+				value = reading.aqi_nitrogen_dioxide;
+			break;
+		}
+
+		$scope.filteredReadings.forEach(function(reading) {
+			if (pollutant == 'pm 2.5') {
+				pollutants.push(reading.aqi_pm25);
+			} else if (pollutant == 'pm 10') {
+				pollutants.push(reading.aqi_pm10);
+			} else if (pollutant == 'Humidity') {
+				pollutants.push(reading.humidity);
+			} else if (pollutant == 'Temperature') {
+				pollutants.push(reading.temperature);
+			} else if (pollutant == 'Ozone') {
+				pollutants.push(reading.aqi_ozone);
+			} else if (pollutant == 'Sulphur Dioxide') {
+				pollutants.push(reading.aqi_sulphur_dioxide);
+			} else if (pollutant == 'Carbon Monoxide') {
+				pollutants.push(reading.aqi_carbon_monoxide);
+			} else if (pollutant == 'Nitrogen Dioxide') {
+				pollutants.push(reading.aqi_nitrogen_dioxide);
+			}
+		});
+
+		for (var i = 0; i < pollutants.length; i++) {
+			if (pollutants[i] > highest) {
+				highest = pollutants[i];
+			}
+
+			if (lowest == 0) {
+				lowest == pollutants[i];
+			} else if (lowest > pollutants[i]) {
+				lowest = pollutants[i];
+			}
+		}
+
+		console.log('highest', highest);
+		console.log('lowest', lowest);
+		console.log('value', value);
+
+
+		var percentage = highest == 0 ? 0 : value / highest * 100;
+		console.log('percentage', percentage);
+		return percentage;	
+	};
+
+	$scope.getGraphLabel = function() {
+		var pollutant = $scope.selectedPollutant.pollutant_name;
+
+		if (pollutant != 'Temperature' && pollutant != 'Humidity') {
+			pollutant = `${pollutant} (rolling 24-hour average)`;
+		}
+
+		return pollutant;
+	}
+
+	$scope.formatReadingValue = function(reading, pollutant) {
+		var value = 0;
+
+		switch(pollutant) {
+			case 'pm 2.5':
+				value = reading.aqi_pm25;
+			break;
+			case 'pm 10':
+				value = reading.aqi_pm10;
+			break;
+			case 'Humidity':
+				value = reading.humidity;
+			break;
+			case 'Temperature':
+				value = reading.temperature;
+			break;
+			case 'Ozone':
+				value = reading.aqi_ozone;
+			break;
+			case 'Sulphur Dioxide':
+				value = reading.aqi_sulphur_dioxide;
+			break;
+			case 'Carbon Monoxide':
+				value = reading.aqi_carbon_monoxide;
+			break;
+			case 'Nitrogen Dioxide':
+				value = reading.aqi_nitrogen_dioxide;
+			break;
+		}
+
+		return value.toFixed(1);
+	}
+
+	$scope.getReadingHour = function(date) {
+		var d = new Date(date);
+		var hour = d.getHours();
+		return hour;
+	}
 
 	$scope.sampler = function(){
 		console.log('test click');
@@ -294,6 +435,7 @@ app.controller('StationController', ['$ionicModal', '$localStorage', '$scope', '
     };
 
     $scope.showGraph = function(){
-    	console.log('show graph');
+
+    	$scope.graphModal.show();
     };
 }]);

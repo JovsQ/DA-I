@@ -85,6 +85,7 @@ app.controller('SplashController', ['$ionicHistory', '$localStorage', '$q', '$sc
             $q.all(promises)
             .then(function(response) {
                 console.log('new readings size', newReadings.length);
+                $scope.$storage.newReadings = newReadings;
                 deferred.resolve();  
             })
             .catch(function(error) {

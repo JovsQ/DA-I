@@ -1,119 +1,24 @@
 <ion-modal-view style="background-color: transparent;">
-  <ion-content style="padding-top: 150px;margin: 20px;">
-    <div style="background-color: white;">
+  <ion-content class="bar-modal">
+    <div class="modal-container">
       
         <div class="modal-title" style="padding-top:20px; text-align: center;">
-          <p>Pollutant (rolling 24-hour average)</p>
+          <p>{{ getGraphLabel() }}</p>
         </div>
 
-        <div style="height: 100px; padding: 5px; display: flex; flex-direction: row; justify-content: space-evenly">
-          <div style="display: flex; flex: 1; padding: 2px">
-            <div style="flex: 1; background-color: blue"></div>
+        <div style="height: 130px; padding-left: 5px; padding-right: 5px; display: flex; flex-direction: row; justify-content: space-evenly;">
+          <div ng-repeat="reading in filteredReadings" style="display: flex; width: 4.17%; flex-direction: column; padding-left: 2px; padding-right: 2px; height: 100%; justify-content: flex-end;">
+            <div style="display: flex; flex: 1; flex-direction: column;height: 100%; justify-content: flex-end;">
+              <p style="font-size: 5px; height: 10px; display: flex; justify-content: center; align-items: center; transform: rotate(270deg);">{{formatReadingValue(reading, selectedPollutant.pollutant_name)}}</p>
+              <div style="display: flex; background-color: blue; height: {{getPercentage(reading, selectedPollutant.pollutant_name)}}%"></div>
+            </div>
+            <p style="font-size: 5px; height: 10px; display: flex; justify-content: center;">{{getReadingHour(reading.reading_date)}}</p>
           </div>
-
-          <div style="display: flex; flex: 1; padding: 2px">
-            <div style="flex: 1; background-color: yellow"></div>
-          </div>
-
-          <div style="display: flex; flex: 1; padding: 2px">
-            <div style="flex: 1; background-color: red"></div>
-          </div>
-
-          <div style="display: flex; flex: 1; padding: 2px">
-            <div style="flex: 1; background-color: blue"></div>
-          </div>
-
-          <div style="display: flex; flex: 1; padding: 2px">
-            <div style="flex: 1; background-color: yellow"></div>
-          </div>
-
-          <div style="display: flex; flex: 1; padding: 2px">
-            <div style="flex: 1; background-color: red"></div>
-          </div>
-
-          <div style="display: flex; flex: 1; padding: 2px">
-            <div style="flex: 1; background-color: blue"></div>
-          </div>
-
-          <div style="display: flex; flex: 1; padding: 2px">
-            <div style="flex: 1; background-color: yellow"></div>
-          </div>
-
-          <div style="display: flex; flex: 1; padding: 2px">
-            <div style="flex: 1; background-color: red"></div>
-          </div>
-
-          <div style="display: flex; flex: 1; padding: 2px">
-            <div style="flex: 1; background-color: blue"></div>
-          </div>
-
-          <div style="display: flex; flex: 1; padding: 2px">
-            <div style="flex: 1; background-color: yellow"></div>
-          </div>
-
-          <div style="display: flex; flex: 1; padding: 2px">
-            <div style="flex: 1; background-color: red"></div>
-          </div>
-
-          <div style="display: flex; flex: 1; padding: 2px">
-            <div style="flex: 1; background-color: blue"></div>
-          </div>
-
-          <div style="display: flex; flex: 1; padding: 2px">
-            <div style="flex: 1; background-color: yellow"></div>
-          </div>
-
-          <div style="display: flex; flex: 1; padding: 2px">
-            <div style="flex: 1; background-color: red"></div>
-          </div>
-
-          <div style="display: flex; flex: 1; padding: 2px">
-            <div style="flex: 1; background-color: blue"></div>
-          </div>
-
-          <div style="display: flex; flex: 1; padding: 2px">
-            <div style="flex: 1; background-color: yellow"></div>
-          </div>
-
-          <div style="display: flex; flex: 1; padding: 2px">
-            <div style="flex: 1; background-color: red"></div>
-          </div>
-
-          <div style="display: flex; flex: 1; padding: 2px">
-            <div style="flex: 1; background-color: blue"></div>
-          </div>
-
-          <div style="display: flex; flex: 1; padding: 2px">
-            <div style="flex: 1; background-color: yellow"></div>
-          </div>
-
-          <div style="display: flex; flex: 1; padding: 2px">
-            <div style="flex: 1; background-color: red"></div>
-          </div>
-
-          <div style="display: flex; flex: 1; padding: 2px">
-            <div style="flex: 1; background-color: blue"></div>
-          </div>
-
-          <div style="display: flex; flex: 1; padding: 2px">
-            <div style="flex: 1; background-color: yellow"></div>
-          </div>
-
-          <div style="display: flex; flex: 1; padding: 2px">
-            <div style="flex: 1; background-color: red"></div>
-          </div>
-
         </div>
-        
 
-        <div style="height: 44px; text-align: center; margin-top: 20px">
+        <div style="height: 44px; text-align: center; margin-top: 10px">
           <button style="min-width: 97%; border-radius: 5px; border: 0; height: 36px; margin: 4px; background-color: #ADD8E6;" ng-click="graphModal.hide()">Cancel</button>
         </div>
     </div>
-
-    <!-- <div class="bar" >
-      <button style="min-width:100%; border-radius:5px; background-color: #ADD8E6; color: black;" class="button" ng-click="modal.hide()">Cancel</button>      
-    </div> -->
-
   </ion-content>
 </ion-modal-view>

@@ -122,3 +122,38 @@
   height: 10px;
   margin-right: 10px;
 }
+
+.bar-modal {
+  padding-top: 150px;
+  margin: 20px;
+}
+
+.modal-container {
+  background-color: white;
+}
+
+.bar-container {
+  display: flex; 
+  flex-direction: column; 
+  flex: 1; 
+  padding: 2px; 
+  height: 100%;
+}
+
+.value-container {
+  display: flex; 
+  flex: 1;
+  align-self: flex-start;
+}
+
+.value-size {
+  font-size: 8px;
+}
+
+.per-bar-container {
+  display: flex; 
+  flex: 9;
+  height: 100%;
+}
+
+

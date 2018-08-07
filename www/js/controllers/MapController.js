@@ -6,8 +6,6 @@ app.controller('MapController', ['$q', '$scope', '$localStorage', '$state', 'api
 	$scope.$storage = $localStorage;
 	var infobox;
 
-	$scope.googleMapsURL = 'AIzaSyBB13AC26RukVzqRxBJ9yddBkhQoZh_WPQ';
-
 	$scope.init = function() {
 
 		$scope.stations = $scope.$storage.latestReadings;
@@ -15,15 +13,6 @@ app.controller('MapController', ['$q', '$scope', '$localStorage', '$state', 'api
 		NgMap.getMap().then(function(map) {
 			$scope.map = map;
 		})
-
-		// fetchStations().then(function(){
-
-		// 	NgMap.getMap().then(function(map) {
-		// 		$scope.map = map;
-		// 	});
-		// });
-
-		// this.showInfobox = this.showInfobox.bind(this);
 	}
 
 	$scope.goToStations = function() {
@@ -31,33 +20,6 @@ app.controller('MapController', ['$q', '$scope', '$localStorage', '$state', 'api
 	}
 
 	$scope.stations = [];
-
-	function fetchStations() {
-		var deferred = $q.defer();
-
-		$scope.stations = [];
-		apiService.getAllLatestReadings()
-		.then(function(stations){
-			stations.forEach(function(station){
-				if (station.station.station_name != 'Naga City, Camarines Sur' &&
-                station.station.station_name != 'Pasay Station' &&
-                station.station.station_name != 'Navotas Station' &&
-                station.station.station_name != 'North Caloocan Station') {
-                    // console.log('station', station);
-                    $scope.stations.push(station);
-                }
-			});
-
-			console.log('stations', $scope.stations);
-			deferred.resolve();
-		})
-		.catch(function(error){
-			console.log('error', error);
-			deferred.reject();
-		})
-
-		return deferred.promise;
-	};
 
 	$scope.logMarkers = function(station) {
 		console.log('station', station);
@@ -133,39 +95,4 @@ app.controller('MapController', ['$q', '$scope', '$localStorage', '$state', 'api
     };
 
 }])
-
-// 'use strict';
-
-// (function() {
-
-//   class MainController {
-
-//     constructor($http, NgMap) {
-//       angular.extend(this, {
-//         $http, NgMap,
-//         infobox: {}
-//       });
-//     }
-
-//     // THE INIT FUNCTION
-//     $onInit() {
-//       this.NgMap.getMap()
-//         .then(map => this.map = map);
-
-//       this.showInfobox = this.showInfobox.bind(this);
-//     }
-
-//     showInfobox (event, index, station) {
-//       this.infobox.station = station;
-//       this.map.showInfoWindow('station-details', 'station-marker-' + index);
-//     }
-//   }
-
-//   angular.module('denrEmbAirWebDashboardApp')
-//     .component('main', {
-//       templateUrl: 'app/main/main.html',
-//       controller: MainController,
-//       controllerAs: 'vm'
-//     });
-// })();
 
